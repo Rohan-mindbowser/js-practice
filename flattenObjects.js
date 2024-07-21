@@ -17,10 +17,10 @@ const flattenObj = (obj, parentKey) => {
 
     function flat(obj, parentKey) {
         for (const [key, value] of Object.entries(obj)) {
-            if (typeof value === 'string') {
-                res[`${parentKey}${key}`] = value
-            } else {
+            if (typeof value === 'object') {
                 flat(value, `${parentKey}${key}_`)
+            } else {
+                res[`${parentKey}${key}`] = value
             }
         }
     }
