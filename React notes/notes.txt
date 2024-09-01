@@ -1,0 +1,118 @@
+1. What is react ?
+    React is a popular JavaScript library for building user interfaces.
+    React is known for its component-based architecture, which makes it easier to build complex user interfaces that are reusable and maintainable.
+
+2. Virtual DOM?
+    Virtual DOM (Document Object Model) is a lightweight representation of the actual DOM in a web application. It's a JavaScript object that mirrors the structure and content of the real DOM. When changes occur in the application's state, React updates the virtual DOM, which is much faster than directly manipulating the real DOM.
+
+    Here's how it works:
+
+    Initial Rendering: 
+    React creates an initial virtual DOM based on the application's components and their state.
+    State Changes: 
+    When the application's state changes (e.g., user interaction, data updates), React re-renders the components involved.
+    Virtual DOM Diffing: 
+    React compares the new virtual DOM with the previous one to identify the minimal set of changes required to update the real DOM.
+    DOM Updates: 
+    React applies the necessary changes to the real DOM, ensuring that the UI reflects the updated state efficiently.
+
+3. Class based components life cycle ?
+
+    componentDidMount(): Called after the component is mounted to the DOM. This is where you can perform side effects like fetching data, setting up subscriptions, or updating the DOM directly.
+
+    shouldComponentUpdate(nextProps, nextState): Determines whether the component should re-render. If you return false, the update will be skipped.
+
+    componentDidUpdate(prevProps, prevState): Called after the component has been updated. You can use this to perform side effects based on the updated props or state.
+
+    componentWillUnmount(): Called before the component is unmounted from the DOM. This is where you can clean up subscriptions, timers, or any other side effects.
+
+4. What is useMemo()?
+    React's useMemo hook is used to memoize expensive calculations within functional components. Memoization means caching the result of a function so that it doesn't need to be recalculated every time the component re-renders.
+
+    // Memoize the expensive calculation
+    const expensiveCalculation = useMemo(() => {
+    // Your expensive calculation here
+    return data.reduce((acc, item) => acc + item.value, 0);
+    }, [data]);
+
+5. What is useCallback()?
+    React's useCallback hook is used to memoize functions within functional components. Memoization means caching the result of a function so that it doesn't need to be recalculated every time the component re-renders.
+
+    // Memoize the handleClick function
+    const handleClick = useCallback(() => {
+    console.log('handleClick called');
+    }, []);
+
+6. What is context api?
+
+    Create a context object: 
+    Use React.createContext() to create a context object.
+
+    Provide the context value: 
+    Wrap the components that need to access the context value with the Provider component from the context object.
+
+    Consume the context value: 
+    Use the useContext hook or the Consumer component from the context object to consume the context value in your components.
+
+7. What is reconciliation in react?
+
+    React Reconciliation is the process by which React efficiently updates the user interface (UI) when the application's state or props change. It's a key optimization technique that helps React achieve high performance.
+
+    Here's how reconciliation works:
+
+    Virtual DOM: React maintains a virtual DOM, which is a lightweight representation of the actual DOM. When the state or props of a component change, React creates a new virtual DOM.
+
+    Diffing: React compares the new virtual DOM with the old one to identify the minimal set of changes required to update the actual DOM. This process is called diffing.
+    
+    DOM Updates: React applies the necessary changes to the actual DOM, ensuring that the UI reflects the updated state efficiently.
+
+8. React optimisation techniques?
+
+    Memoization: Use useMemo and useCallback to memoize expensive calculations or functions that don't change frequently.
+
+    Keying: Ensure that components have unique keys when rendering lists to help React efficiently update the DOM.
+
+    Lazy Loading: Load components or modules only when they are needed, especially for large applications.
+
+9. Why to pass unique key prop?
+
+    Passing a unique key to React components is essential for efficient reconciliation and correct rendering of lists.
+
+    When a list changes, React compares the keys of the old and new lists to identify the minimum number of updates required. This helps React avoid unnecessary re-renders, improving performance.
+
+10. HOC in react?
+
+    Higher-Order Components (HOCs) are a pattern in React that allow you to reuse component logic across multiple components. They are functions that take a component as an argument and return a new component with additional functionality.
+
+    import React from 'react';
+
+    function withAuthentication(WrappedComponent) {
+    return class extends React.Component {
+        render() {
+        const isAuthenticated = this.props.isAuthenticated;   
+
+
+        if (isAuthenticated) {
+            return <WrappedComponent {...this.props} />;
+        } else {
+            return <Redirect to="/login" />;
+        }
+        }
+    };
+    }
+
+    export default withAuthentication;
+
+11. What is JSX?
+
+    JSX is a syntax extension for JavaScript that allows you to write HTML-like code within JavaScript files. It is compiled into regular JavaScript code before execution.
+
+
+12. Explain the difference between controlled and uncontrolled components?
+
+    Controlled components: Their values are managed by the parent component using state.
+
+    Uncontrolled components: 
+    Their values are managed by the DOM itself.
+
+13. What are the differences between functional and class components?
