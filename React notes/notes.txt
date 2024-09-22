@@ -116,3 +116,5 @@
     Their values are managed by the DOM itself.
 
 13. What are the differences between functional and class components?
+
+14. What are pure components in react?
