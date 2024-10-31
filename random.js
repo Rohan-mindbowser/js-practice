@@ -1,21 +1,9 @@
-const myFunc = () => {
-	return new Promise((res, rej) => {
-		res(2);
-	});
-}
+const obj1 = {
+  name: "rohan",
+};
 
-myFunc()
-	.then(res => {
-		console.log(res);
-		return res * 2;
-	})
-	.then(res => {
-		console.log(res);
-		return res * 2;
-	})
-	.finally(() => {
-		console.log("Finally block");
-	})
-	.then(res => {
-		console.log(res);
-	});
+const obj2 = { ...obj1 };
+
+obj2.name = "sid";
+
+console.log(obj1, obj2);

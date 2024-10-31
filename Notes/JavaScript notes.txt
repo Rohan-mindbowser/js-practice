@@ -1,0 +1,54 @@
+1. Difference between var, let and const ?
+    ** VAR ** :-
+    Scope: var is function-scoped, meaning it's accessible within the function it’s defined in. If declared outside any function, it becomes globally scoped.
+
+    Hoisting: Variables declared with var are hoisted, meaning the declaration is moved to the top of its scope, with an initial value of undefined.
+
+    Reassignability: Can be re-assigned and re-declared within its scope without errors.
+
+    ** LET ** :-
+    Scope: let is block-scoped, meaning it's confined to the block { } in which it's defined (such as within loops, if statements, or functions).
+
+    Hoisting: While technically hoisted, let variables are not accessible before they are declared, which leads to a "Temporal Dead Zone" error if accessed too early.
+
+    Reassignability: Can be re-assigned but not re-declared within the same scope.
+
+    ** CONST ** :-
+    Scope: const is also block-scoped like let.
+
+    Hoisting: Like let, it is hoisted but cannot be accessed before declaration due to the Temporal Dead Zone.
+
+    Reassignability: Once assigned, a const variable cannot be re-assigned or re-declared. However, if it’s an object or array, the contents can still be modified (the reference is constant, not the content).
+
+
+2. What Is Event Delegation in JavaScript?
+
+    Event delegation is a technique where you attach a single event listener to a parent element, and that event listener handles events occurring on its child elements. It helps optimize performance and reduce memory consumption.
+
+3. What Is Implicit Type Coercion in JavaScript?
+
+    Implicit type coercion is a JavaScript concept that refers to the automatic conversion of a value from one type to another. In JavaScript, this conversion follows a priority order that typically begins with strings, then numbers, and finally booleans. If you try to add a string to a number, JavaScript will implicitly coerce the number to a string before performing the addition operation because strings have the highest priority in type coercion.
+
+4. Explain the Concept of Prototypes in JavaScript.
+
+    In JavaScript, prototypes provide a way for objects to share features with each other. Think of prototypes like a "template" or "blueprint" for an object that other objects can inherit from. This allows us to reuse properties and methods across multiple objects without defining them again and again.
+
+5. How Can You Clone an Object in JavaScript?
+
+    There are multiple ways to clone an object in JavaScript. One common method is using the Object.assign() method or the spread operator (...).
+
+6. What Are Promises in JavaScript?
+
+    Promises are objects used for asynchronous operations. They represent the eventual completion or failure of an asynchronous operation and allow chaining and handling of success or error cases.
+
+7. Explain the Concept of Event Bubbling in JavaScript.
+
+    Event bubbling is the process where an event triggers on a nested element, and then the same event is propagated to its parent elements in the document object model (DOM) tree. It starts from the innermost element and goes up to the document root.
+
+8. Difference between normal function and arrow function?
+
+    Arrow functions (=>) and normal functions (function) in JavaScript are both used to define functions, but they differ in syntax, behavior, and handling of this and arguments.
+
+    Arrow Function: Does not have its own this context; it inherits this from the surrounding lexical scope. This makes it ideal for callbacks where you want to use the outer context's this (e.g., in classes).
+
+    Normal Function: Has its own this context, which depends on how the function is called (e.g., as a method, constructor, or global function).
