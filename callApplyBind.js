@@ -15,7 +15,7 @@ const person1 = {
     }
 }
 
-// person1.print.call(newPerson)
+person1.print.apply(newPerson,[12])
 
 /** CALL ENDS */
 
@@ -24,7 +24,7 @@ const person1 = {
 // Apply is very similar to the call function. The only difference is that in apply you can pass an array as an argument list.
 
 
-person1.print.apply(newPerson, [1, 2, 3])
+// person1.print.apply(newPerson, [1, 2, 3])
 
 
 /** BIND */

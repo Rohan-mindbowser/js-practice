@@ -45,6 +45,8 @@
 
     Event bubbling is the process where an event triggers on a nested element, and then the same event is propagated to its parent elements in the document object model (DOM) tree. It starts from the innermost element and goes up to the document root.
 
+    To stop event bubbling we can use event.stopPropagation()
+
 8. Difference between normal function and arrow function?
 
     Arrow functions (=>) and normal functions (function) in JavaScript are both used to define functions, but they differ in syntax, behavior, and handling of this and arguments.
@@ -52,3 +54,34 @@
     Arrow Function: Does not have its own this context; it inherits this from the surrounding lexical scope. This makes it ideal for callbacks where you want to use the outer context's this (e.g., in classes).
 
     Normal Function: Has its own this context, which depends on how the function is called (e.g., as a method, constructor, or global function).
+
+
+9 . Microtask Queue
+    What it is: A queue of tasks that have higher priority than macrotasks.
+    
+    Examples of Microtasks:
+    Promises (.then, .catch, .finally callbacks).
+    MutationObserver callbacks.
+    Queueing a microtask using queueMicrotask().
+
+    Execution Timing:
+    Microtasks are executed immediately after the currently running JavaScript code and before any macrotasks.
+    If new microtasks are added during the execution of other microtasks, they are added to the same microtask queue and executed in order.
+    
+    Priority:
+    Always executed before moving to the next macrotask in the macrotask queue.
+
+10. Macrotask Queue
+    What it is: A queue of tasks that are lower in priority compared to microtasks.
+
+    Examples of Macrotasks:
+    setTimeout, setInterval.
+    setImmediate (Node.js only).
+    I/O operations.
+    requestAnimationFrame.
+
+    Execution Timing:
+    Macrotasks are executed after the currently running JavaScript code and after all microtasks in the microtask queue have been completed.
+    
+    Priority:
+    Executed in the order they are added but only after the microtask queue is empty.
