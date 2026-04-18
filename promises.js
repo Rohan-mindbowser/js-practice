@@ -1,15 +1,29 @@
-const p1 = new Promise((res, rej) => res("completed 1..!!"));
-const p2 = new Promise((res, rej) => res("completed 2..!!"));
-const p3 = new Promise((res, rej) => {
-  setTimeout(() => {
-    rej("Promise 3 rejected");
-  }, 3000);
-});
+if (!Promise.allSettled) {
+  Promise.allSettled = function (promises) {
+    return new Promise((resolve) => {
+      const results = [];
+      let settledCount = 0;
 
-Promise.allSettled([p1, p2, p3])
-  .then((res) => {
-    console.log("response", res);
-  })
-  .catch((err) => {
-    console.log("error", err);
-  });
+      promises.forEach((promise, index) => {
+        Promise.resolve(promise)
+          .then((value) => {
+            results[index] = { status: "fulfilled", value };
+          })
+          .catch((reason) => {
+            results[index] = { status: "rejected", reason };
+          })
+          .finally(() => {
+            settledCount++;
+            if (settledCount === promises.length) {
+              resolve(results);
+            }
+          });
+      });
+
+      // handle empty input array
+      if (promises.length === 0) {
+        resolve([]);
+      }
+    });
+  };
+}

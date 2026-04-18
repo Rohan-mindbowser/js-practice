@@ -3,16 +3,15 @@
 This pattern is used a lot and can also be implemented in two different ways, via classes or factory functions (functions that return an object). */
 
 function carFactory(color, type, tyreSize) {
-    return {
-        color,
-        type,
-        tyreSize,
-        CC: function () {
-            return Math.floor(Math.random() * 1000)
-        }
-    }
+  return {
+    color,
+    type,
+    tyreSize,
+    CC: function () {
+      return Math.floor(Math.random() * 1000);
+    },
+  };
 }
 
-const car1 = carFactory('red', 'petrol', '17')
-const car2 = carFactory('white', 'hybrid', '19')
-
+const car1 = carFactory("red", "petrol", "17");
+const car2 = carFactory("white", "hybrid", "19");
