@@ -1,21 +1,16 @@
-// const obj1 = {
-//   name: "rohan",
-// };
+console.log("start");
 
-// Object.prototype.getName = function () {
-//   console.log("name is", this.name);
-// };
+function heavyTask() {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      for (let i = 0; i < 10000000000; i++) {}
+      res("Heavy task completed");
+    }, 0);
+  });
+}
 
-// obj1.getName()
-
-// console.log(1);
-
-setTimeout(() => {
-  console.log(2);
-}, 0);
-
-Promise.resolve().then(() => {
-  console.log(4);
+heavyTask().then((res) => {
+  console.log(res);
 });
 
-console.log(3);
+console.log("end");
