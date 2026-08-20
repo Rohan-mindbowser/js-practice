@@ -1,10 +1,13 @@
-function debounce(cb, delay = 1000) {
+function debounce(callback, delay) {
   let timer;
 
-  return function () {
+  return function (...args) {
+    const context = this;
+
     clearTimeout(timer);
+
     timer = setTimeout(() => {
-      cb();
+      callback.apply(context, args);
     }, delay);
   };
 }
