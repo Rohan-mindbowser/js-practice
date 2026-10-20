@@ -1,27 +1,31 @@
 async function expoBackOff(cb, retries = 3, delay = 1000) {
-  const MAX_RETRIES = retries;
-  let DELAY = delay;
+  let lastError;
 
-  for (let i = 0; i < MAX_RETRIES; i++) {
-    console.log("Interval->", i);
-    await cb();
-    console.log("CB called after delay->", DELAY);
-    DELAY = DELAY * 2;
-    await delayTask(DELAY);
-    console.log("Task delayed for->", DELAY);
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await cb(); // success → exit immediately
+    } catch (err) {
+      lastError = err;
+      if (attempt === retries) break; // no more retries, don't wait
+      console.log(`Attempt ${attempt + 1} failed, retrying in ${delay}ms`);
+      await delayTask(delay);
+      delay *= 2;
+    }
   }
+
+  throw lastError; // let the caller decide what to do
 }
 
-async function delayTask(DELAY) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, DELAY);
-  });
+function delayTask(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-expoBackOff(async function cb(params) {
-  return new Promise((resolve, reject) => {
-    resolve();
-  });
-});
+// Usage: a callback that fails twice, then succeeds
+let calls = 0;
+expoBackOff(async () => {
+  calls++;
+  if (calls < 3) throw new Error(`fail #${calls}`);
+  return "success";
+})
+  .then((res) => console.log("Result:", res))
+  .catch((err) => console.error("All retries failed:", err.message));
